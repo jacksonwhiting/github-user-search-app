@@ -4,43 +4,51 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				primary: "#21092F",
-				"pri-med": "#8F8694",
-				"pri-light": "#DFDEE0",
-				error: "#FF5050",
-			},
-			backgroundImage: {
-				"gradient-pri":
-					"linear-gradient(90deg, rgba(99,72,254,1) 0%, rgba(97,5,149,1) 100%)",
-				"gradient-sec":
-					"linear-gradient(180deg, rgba(99,72,254,1) 0%, rgba(97,5,149,1) 100%)",
+				skin: {
+					"accent-pri": "#0079FF",
+					"fill-pri-light-mode": "#FEFEFE",
+					"fill-sec-light-mode": "#F6F8FF",
+					"fill-dark-mode": "#141D2F",
+					"text-pri-light-mode": "#4B6A9B",
+					"text-hdg-pri-light-mode": "#2B3442",
+					"text-pri-dark-mode": "#FFFFFF",
+				},
 			},
 			fontFamily: {
-				fontPri: ["Space Grotesk", "sans-serif"],
-				fontSec: ["Inter", "sans-serif"],
+				fontPri: ["Space Mono", "monospace"],
 			},
 			fontSize: {
-				bodyS: ".75rem",
-				bodyM: [
-					".75rem",
-					{
-						letterSpacing: "2px",
-					},
-				],
-				bodyL: [
-					".875rem",
-					{
-						letterSpacing: "2px",
-					},
-				],
-				hdgL: "1.125rem",
-				hdgXl: [
+				HdgL: [
 					"1.625rem",
 					{
-						letterSpacing: "3.42px",
+						lineHeight: "2.375rem",
 					},
 				],
-				bodyPri: ["18px", "26px"],
+				HdgM: [
+					"1.375rem",
+					{
+						lineHeight: "2.06rem",
+					},
+				],
+				HdgS: [
+					"1rem",
+					{
+						lineHeight: "1.625rem",
+					},
+				],
+				HdgXs: [
+					".8125rem",
+					{
+						lineHeight: "1.25rem",
+					},
+				],
+				HdgXXs: ".6875rem",
+				body: [
+					".9375rem",
+					{
+						lineHeight: "1.56rem",
+					},
+				],
 			},
 		},
 	},
