@@ -43,7 +43,7 @@ const renderUserInfo = () => {
 		fetchData(`https://api.github.com/users/${userName}`)
 			.then((userInfo) => {
 				displayUserInfo(userInfo)
-				console.log(userInfo)
+				inputUserName.value = ""
 			})
 			.catch((err) => {
 				console.log(err)
@@ -53,7 +53,6 @@ const renderUserInfo = () => {
 				searchErrMsgMobile.classList.remove("hidden")
 			})
 	})
-	inputUserName.value = ""
 }
 
 const displayUserInfo = (user) => {
