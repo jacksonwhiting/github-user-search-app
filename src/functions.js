@@ -1,4 +1,5 @@
-// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+export { applyProperTheme, toggleDarkLight, fetchData, dayMonthYearFormat }
+
 // Checks if Dark Theme applied in local storage or on the window object.  If so adds
 //   the dark class and changes the text  on the header to "light".
 const applyProperTheme = () => {
@@ -16,16 +17,6 @@ const applyProperTheme = () => {
 	}
 }
 
-// Listens to the window object for changes to the color-scheme setup by the user.
-//   If a change occurs - sets the appropriate theme
-window
-	.matchMedia("(prefers-color-scheme: dark)")
-	.addEventListener("change", function (e) {
-		const colorScheme = e.matches ? "dark" : "light"
-		localStorage.theme = colorScheme
-		applyProperTheme()
-	})
-
 // Toggles between dark and light theme when user clicks the div
 let toggleDarkLight = () => {
 	const darkIcon = document.querySelector("#dark-icon")
@@ -41,29 +32,38 @@ let toggleDarkLight = () => {
 	})
 }
 
-applyProperTheme()
-toggleDarkLight()
-
-const fetchAdvice = async () => {
-	const response = await fetch("https://api.adviceslip.com/advice")
+const fetchData = async (url) => {
+	const response = await fetch(url)
+	console.log(response)
 	if (response.ok) {
-		const adviceObject = await response.json()
-		return adviceObject
+		const data = response.json()
+		return data
 	} else {
 		throw new Error("An error occured while fetching data")
 	}
 }
 
-let renderAdvice = () => {
-	fetchAdvice()
-		.then((data) => {
-			const adviceTitle = document.querySelector("#advice-title")
-			const adviceStatement = document.querySelector("#advice-statement")
+//Short months format
+const months = {
+	0: "Jan",
+	1: "Feb",
+	2: "Mar",
+	3: "Apr",
+	4: "May",
+	5: "June",
+	6: "July",
+	7: "Aug",
+	8: "Sept",
+	9: "Oct",
+	10: "Nov",
+	11: "Dec",
+}
 
-			adviceTitle.textContent = `Advice #${data.slip.id}`
-			adviceStatement.textContent = `"${data.slip.advice}"`
-		})
-		.catch((err) => {
-			console.log(err)
-		})
+//Takes in a date string and converts it to the following format: 15 Jan 2023
+let dayMonthYearFormat = (dateString) => {
+	const dateCreated = new Date(dateString)
+	const createdDay = dateCreated.getDate()
+	const createdMonth = months[dateCreated.getMonth()]
+	const createdYear = dateCreated.getFullYear()
+	return `${createdDay} ${createdMonth} ${createdYear}`
 }
